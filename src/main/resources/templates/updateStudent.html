@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Info Update Form</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <h2 class="text-center">Edit Student Information!!</h2>
+        </div>
+
+        <div class="container-fluid">
+            <!--/*@thymesVar id="userUpgradationForm" type=""*/-->
+            <form class="form-horizontal" role="form" th:action="@{/editprofile}" th:object="${userUpgradationForm}" method="post" enctype="multipart/form-data">
+
+                <!--/*@thymesVar id="serialId" type="java"*/-->
+                <input type="hidden" th:value="${student.serialId}" id="serialId" name="serialId"/>
+                <div class="form-group">
+                    <label for="studentname">Student Name</label>
+                    <input class="form-control" th:value="${student.studentName}" type="text" id="studentname" name="studentName" autofocus="autofocus"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentid">Student Id</label>
+                    <input class="form-control" th:value="${student.studentId}" type="text" id="studentid" name="studentId" autofocus="autofocus"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentdegree">Student Degree</label>
+                    <input class="form-control" th:value="${student.studentDegree}" type="text" id="studentdegree" name="studentDegree" autofocus="autofocus"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="registrationyear">Registration Year</label>
+                    <input class="form-control" th:value="${student.studentRegistrationYear}" type="text" id="registrationyear" name="studentRegistrationYear" autofocus="autofocus"/>
+                </div>
+
+                <!-- eta niye kaj korte hobe pore -->
+               <div class="form-group">
+                    <label class="control-label">Change Profile Image</label>
+                    <input type="file"  th:autocomplete="${student.profileImagePath}" name="profileImage" class="form-control-file" data-icon="true"/>
+                </div>
+
+
+                <button  type="submit" class="btn btn-primary btn-block">Update</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Id Card Format</title>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+ <div class="jumbotron">
+    <h1 class="text-center">Identification Card</h1>
+  </div>
+
+ <div class="container-fluid align-content-center">
+
+
+            <!--/*@thymesVar id="newStudent" type=""*/-->
+           <div class="row" th:object="${student}">
+               <div class="col-lg-2">
+
+                    <div class="rounded float-left">
+
+                      <!--/*@thymesVar id="profileImagePath" type="ch"*/-->
+                      <img th:src="${student.profileImagePath}" class="img-thumbnail" alt="photo" height="120px" width="120px">
+
+                      <!--  <img src="/images/profile_images/me.jpg" class="img-thumbnail" height="120px" width="120px" alt="p photo">
+                    -->
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+
+                    <h5 class="font-weight-bold text-right">
+                        <span class="align-middle">Jahangirnagar University</span>
+                    </h5>
+
+                    <p  class=" text-right">
+                        <span class="align-middle"> Savar, Dhaka-1342, Bangladesh </span>
+                    </p>
+
+
+                    <strong>
+                        <div class="text-white bg-success text-white text-left">
+                            <p>
+                        <span class="align-middle">
+                            &nbsp; &nbsp; Dept. of Computer Science & Engineering
+                        </span>
+                            </p>
+                        </div>
+                    </strong>
+               </div>
+            </div>
+
+       <div class="row">
+          <div class="col-lg-6">
+             <hr>
+          </div>
+       </div>
+
+     <div  class="row">
+         <div class="col-lg-4">
+             <br>
+             <div class="text-left">
+                 <div class="lead" th:text="${student.studentName}"></div>
+                 ID : <strong th:text="${student.studentId}"> &nbsp; </strong> &nbsp;&nbsp; Class : <strong th:text="${student.studentDegree}"> &nbsp;</strong>
+                 <p> Session : <strong th:text="${student.studentRegistrationYear}"> &nbsp; &nbsp;</strong></p>
+             </div>
+         </div>
+
+
+         <div class="col-lg-2">
+
+             <div class="rounded float-left">
+                 <img th:src="${student.qrCodePath}" class="img-responsive"  height="130px" width="130px" alt="qrcode">
+             </div>
+
+         </div>
+     </div>
+ </div>
+
+
+
+            <!--
+             ${student.qrCodePath}
+             /images/QRCodes/SakibMuhit-45-2014-15-QRCode.png
+            <img th:src="${student.profileImagePath}" alt="photo" height="150px" width="150px"></td>
+            -->
+
+
+ </div>
+
+</body>
+</html>

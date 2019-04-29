@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Student List</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="container-fluid">
+        <div class="jumbotron">
+           <h1 class="text-center">Student List</h1>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <table class="table table-striped">
+
+           <thead>
+                <tr>
+                  <th>Serial No</th>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Id</th>
+                    <th>Degree</th>
+                    <th>Registration Year</th>
+                    <th>QR Code</th>
+                    <th>Update Information</th>
+                </tr>
+           </thead>
+
+
+        <tbody>
+           <tr th:each="student,iterStat : ${students}">
+              <td> <p th:text="${student.serialId}"/> </td>
+               <td> <img th:src="${student.profileImagePath}" alt="photo" height="150px" width="150px"></td>
+              <td> <p th:text="${student.studentName}" />    </td>
+              <td> <p th:text="${student.studentId}" />    </td>
+              <td> <p th:text="${student.studentDegree}" />    </td>
+              <td> <p th:text="${student.studentRegistrationYear}" />    </td>
+               <td> <img th:src="${student.qrCodePath}" alt="photo" height="150px" width="150px"></td>
+
+               <td >
+
+                   <form th:action="@{'/idcard/'+${student.serialId}}"  method="post">
+                       <!--/*@thymesVar id="serialId" type="ch"*/-->
+                      <!-- <input type="hidden" th:field="${student.serialId}" />-->
+                       <button class="btn btn-success" type="submit">Generate Id Card</button>
+                   </form>
+
+                   <form th:action="@{'/editprofile/'+${student.serialId}}"  method="post">
+                       <!--/*@thymesVar id="serialId" type="ch"*/-->
+                       <!-- <input type="hidden" th:field="${student.serialId}" />-->
+                       <button class="btn btn-warning" type="submit">  Edit </button>
+                   </form>
+
+                   <form th:action="@{'/deletestudent/'+${student.serialId}}"  method="post">
+                       <!--/*@thymesVar id="serialId" type="ch"*/-->
+                       <!-- <input type="hidden" th:field="${student.serialId}" />-->
+                       <button class="btn btn-danger" type="submit">  Remove </button>
+                   </form>
+
+                   <!--/*@thymesVar id="IdCardFormat" type="java"*/-->
+
+<!--                   <div class="align-content-center">
+                       <a th:href="@{'/idcard/'+ ${student.serialId}}" class="btn btn-success">Generate Id Card</a>
+                   </div>-->
+
+                 <!--
+                   // With form tag
+                   <form  th:action="@{'/idcard/'+ ${student.serialId}}" method="post">
+                        &lt;!&ndash;<input type="hidden" id="serialId" th:value="${student.serialId}" name="serialId"/>&ndash;&gt;
+                       <button  type="submit" class="btn-success">Genarate Id Card</button>
+                   </form>-->
+                  <!--
+                   // Without form tag
+
+                   <div class="align-content-center">
+                       <a th:href="@{/idcard/{id}(id=${student.serialId})}" class="btn btn-outline-primary btn-success">Generate Id Card</a>
+                   </div>
+                   -->
+
+               </td>
+           </tr>
+        </tbody>
+
+    </table>
+  </div>
+</div>
+
+</body>
+</html>
